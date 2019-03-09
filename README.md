@@ -1,5 +1,7 @@
-#LOGIN DOCENTE
+LOGIN DOCENTE
 
-para implementar este proyecto es necesario tener un servidor local como XAMPP para poder ejecutar la aplicacion web
+-para implementar este proyecto es necesario tener un servidor local como XAMPP para poder ejecutar la aplicacion web
 
-La aplicacion parte desde "Perfil.html"
+-La base de datos se llama "practia.sql", debe ser importada al servidor local.
+
+-La aplicacion parte desde "Perfil.html".
