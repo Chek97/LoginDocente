@@ -7,21 +7,24 @@
     use PDOException;
 
     class Conection {
-        
-        private $conn;
-        private $host;
-        private $dbName;
-        private $user;
-        private $password;
+        // Atributes
+        protected $conn;
+        protected $host;
+        protected $dbName;
+        protected $user;
+        protected $password;
 
         public function __construct(){
+            // Define variables
             $this->host = "localhost";
             $this->dbName = "login-docente";
             $this->user = "root";
             $this->password = "";
+
             $this->getConnection();
         }
 
+        // Methods
         public function getConnection(){
             try {
                 $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbName, $this->user, $this->password);

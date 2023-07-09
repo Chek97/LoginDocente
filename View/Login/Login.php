@@ -27,7 +27,7 @@
                 <button type="submit">Iniciar Sesion</button>
             </div>
             <p>
-                No tienes una cuenta todavia? <a href="#">Crea una aqui</a> 
+                No tienes una cuenta todavia? <a href="../Register/Register.php">Crea una aqui</a> 
             </p>
         </form>
     </div>
