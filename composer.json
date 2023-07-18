@@ -2,7 +2,7 @@
     "name": "felyc/login-docente",
     "autoload": {
         "psr-4": {
-            "Felyc\\LoginDocente\\": "src/"
+            "App\\": ""
         }
     },
     "authors": [

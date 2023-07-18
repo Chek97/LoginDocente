@@ -1,10 +1,10 @@
 <?php
 
-//require_once('../../autoload.php');
-    namespace Models\User;
+    namespace App\Model\User;
 
+    //require_once('../../vendor/autoload.php');
 
-    use Conection\Conection;
+    use App\Model\Conection\Conection;
 
     class User extends Conection {
         // Attributes
@@ -77,7 +77,7 @@
                 ":ema" => $this->getEmail(), ":pass" => $this->getPassword(), ":fir" => $this->getFirm()
             ));
 
-            $statement->rowCount() > 0 ? true : false;
+            return $statement->rowCount() > 0 ? true : false;
         }
 
         public function getUser($id){
