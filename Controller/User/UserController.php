@@ -5,6 +5,7 @@
     require_once('../../vendor/autoload.php');
 
     use App\Model\User\User;
+    use App\Helpers\Validate;
 
     class UserController {
         // Attributes
@@ -32,7 +33,7 @@
             $fileName = $images['firm']['name'];
             $tempFile = $images['firm']['tmp_name'];
 
-            $newFileName = uniqid() . '-' . $fileName;
+            $newFileName = uniqid() . '-' . str_replace(' ', '', $fileName);
 
             if(move_uploaded_file($tempFile, $directory . $newFileName)){
                 $this->user->setName($request['name']);
@@ -66,14 +67,27 @@
 
     // Create Method
     if(isset($_POST['submit_user'])){
-        $request = $userController->createUser($_POST, $_FILES);
-        if($request){
-            echo("usuario creado con exito");
-            /* session_start();
-            $_SESSION['session'] = array("status" => "success", "message" => "Usuario creado con exito");
-            // todo: obtener datos del usuario $_SESSION['user'] = array("id" => $request['id'], "") */
+        // Validar si el formulario y la imagen son validos
+        $formValidator = Validate::validateForm($_POST, $_FILES);
+        if($formValidator){
+            session_start();
+            $_SESSION['message'] = "La informacion no es correcta, intentelo mas tarde";
+            $_SESSION['status'] = "warning";
+            header("location: ../../View/Register/Register.php");
         }else{
-            echo("No fue posible crear");
+            // Si el formulario es correcto entonces ingresar datos a la BD
+            $request = $userController->createUser($_POST, $_FILES);
+            session_start();
+            // Si hay exito redirigir a la pantalla respectiva con su mensaje
+            if($request){
+                $_SESSION['message'] = "El usuario fue creado exitosamente";
+                $_SESSION['status'] = "success";
+                header("location: ../../View/Login/Login.php");
+            }else{
+                $_SESSION['message'] = "No fue posible crear al usuario, intentalo nuevamente";
+                $_SESSION['status'] = "danger";
+                header("location: ../../View/Register/Register.php");
+            }
         }
     }
 

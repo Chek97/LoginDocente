@@ -6,6 +6,7 @@
 </head>
 <body>
     <div>
+        <?php include('../Includes/message.php'); ?>
         <header>
             <h1>Login Docente</h1>
         </header>
