@@ -5,6 +5,7 @@
     //require_once('../../vendor/autoload.php');
 
     use App\Model\Conection\Conection;
+use PDO;
 
     class User extends Conection {
         // Attributes
@@ -80,8 +81,21 @@
             return $statement->rowCount() > 0 ? true : false;
         }
 
-        public function getUser($id){
+        public function getUser($id = "", $username = ""){
+            $query = "SELECT * FROM user WHERE " . ($username != "" ? "username = :user" : "id = :id");
+            
+            $statement = $this->conn->prepare($query);
+            if($username != ""){
+                $statement->execute(array(":user" => $username));
+            }else{
+                $statement->execute(array(":id" => $id));
+            }
 
+            if($statement->rowCount() > 0){
+                return $username != "" ? $statement->fetch(PDO::FETCH_OBJ) : $statement->fetchAll(PDO::FETCH_ASSOC);
+            }else {
+                return null;
+            }
         }
 
         public function updateUser($id, $request){
