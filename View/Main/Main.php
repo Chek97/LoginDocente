@@ -1,12 +1,34 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['user'])){
+        header('location: ../Login/Login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php require_once('../Includes/header.php'); ?>
     <title>Principal | Login Docente 8</title>
 </head>
 <body>
-    <h1>Main</h1>
+    <nav>
+        <div>
+            <a href="#">Login Docente</a>
+        </div>
+        <div>
+            <p>Usuario</p><!-- // todo: Lista desplegable -->
+        </div>
+    </nav>
+    <main>
+        <div>
+            <button>
+                Crear Actas
+            </button>
+            <button>
+                Mostrar Lista de Actas
+            </button>
+        </div>
+    </main>
+    <?php require_once('../Includes/footer.php'); ?>
 </body>
 </html>

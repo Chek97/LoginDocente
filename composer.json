@@ -1,0 +1,15 @@
+{
+    "name": "felyc/login-docente",
+    "autoload": {
+        "psr-4": {
+            "App\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Cristian Felipe Checa Rojas",
+            "email": "felychk203@hotmail.com"
+        }
+    ],
+    "require": {}
+}
